@@ -1,9 +1,9 @@
-import PropTypes from "prop-types"
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
 import "fontsource-roboto"
+import { makeStyles } from "@material-ui/core/styles"
 import { Grid } from "@material-ui/core"
 import { Link } from "gatsby"
+import PropTypes from "prop-types"
 
 const useStyles = makeStyles(theme => ({
   navbar: {
@@ -11,13 +11,14 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     padding: "0 3rem",
     color: "black",
+    marginBottom: "3rem",
   },
   logo: {
-    fontSize: "2rem",
+    fontSize: "2.2rem",
     fontFamily: "roboto",
   },
   links: {
-    fontSize: "1.1rem",
+    fontSize: "1.3rem",
     fontFamily: "roboto",
     display: "inline",
     marginLeft: theme.spacing(3),
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     color: "black",
     textDecoration: "none",
     "&:hover": {
-      color: theme.palette.primary.light,
+      color: "#2196F3",
       cursor: "pointer",
     },
   },
@@ -45,8 +46,8 @@ const Header = ({ siteTitle }) => {
   const classes = useStyles()
 
   return (
-    <Grid container className={classes.navbar}>
-      <Grid item xs={3} md={2} justify="center">
+    <Grid container justify="center" className={classes.navbar}>
+      <Grid item xs={3} md={2}>
         <h2 className={classes.logo}>
           <Link className={classes.gatsbyLogoLink} to="/">
             {siteTitle}
@@ -89,7 +90,7 @@ const Header = ({ siteTitle }) => {
           </Link>
         </p>
       </Grid>
-      <Grid item container justify="center" xs={0} md={3}>
+      <Grid item container justify="center" xs={false} md={3}>
         <p className={classes.links}>
           <Link
             className={classes.gatsbyLink}

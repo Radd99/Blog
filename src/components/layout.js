@@ -23,19 +23,22 @@ const Layout = ({ children }) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          padding: `0 5rem 1.5rem`,
         }}
       >
         <main>{children}</main>
         <footer
           style={{
-            marginTop: `2rem`,
+            position: "relative",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            textAlign: "center",
+            backgroundColor: "white",
+            color: "black",
           }}
         >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          Code Blog © {new Date().getFullYear()}, Build by Radd
         </footer>
       </div>
     </>
