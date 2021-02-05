@@ -3,8 +3,6 @@ import { makeStyles } from "@material-ui/core/styles"
 import "fontsource-roboto"
 import Button from "@material-ui/core/Button"
 
-// import thumbnail from "../images/thumbnail.png"
-
 const useStyles = makeStyles(theme => ({
   container: {
     width: "85%",
@@ -88,7 +86,7 @@ function BlogContainer({ thumbnail, title, date, tags, description }) {
         <p className={classes.date}>{date}</p>
 
         <div className={classes.tags}>
-          {tagArray.map(( tag, idx) => {
+          {tagArray.map((tag, idx) => {
             return (
               <p key={idx} className={classes.tag}>
                 {tag}
