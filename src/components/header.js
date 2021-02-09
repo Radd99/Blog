@@ -14,11 +14,11 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "3rem",
   },
   logo: {
-    fontSize: "2.2rem",
+    fontSize: "2.5rem",
     fontFamily: "roboto",
   },
   links: {
-    fontSize: "1.3rem",
+    fontSize: "1.5rem",
     fontFamily: "roboto",
     display: "inline",
     marginLeft: theme.spacing(3),
@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
   gatsbyLinkActive: {
     color: theme.palette.primary.dark,
+    textDecoration: "underline",
   },
   gatsbyLogoLink: {
     color: "black",
@@ -68,7 +69,7 @@ const Header = ({ siteTitle }) => {
             activeClassName={classes.gatsbyLinkActive}
             to="/about"
           >
-            About Us
+            About
           </Link>
         </p>
         <p className={classes.links}>
@@ -84,9 +85,9 @@ const Header = ({ siteTitle }) => {
           <Link
             className={classes.gatsbyLink}
             activeClassName={classes.gatsbyLinkActive}
-            to="/blogs"
+            to="/tags"
           >
-            Blogs
+            Tags
           </Link>
         </p>
       </Grid>

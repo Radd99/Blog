@@ -2,6 +2,8 @@ import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import "fontsource-roboto"
 import Button from "@material-ui/core/Button"
+import { Link } from "gatsby"
+import { slugify } from "../utils/slugify"
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -71,7 +73,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function BlogContainer({ thumbnail, title, date, tags, description }) {
+function BlogContainer({ thumbnail, title, date, tags, description, slug }) {
   const classes = useStyles()
 
   const tagArray = tags.split(" ")
@@ -88,9 +90,11 @@ function BlogContainer({ thumbnail, title, date, tags, description }) {
         <div className={classes.tags}>
           {tagArray.map((tag, idx) => {
             return (
-              <p key={idx} className={classes.tag}>
-                {tag}
-              </p>
+              <Link to={`/tags/${slugify(tag)}`}>
+                <p key={idx} className={classes.tag}>
+                  {tag}
+                </p>
+              </Link>
             )
           })}
         </div>
@@ -99,7 +103,9 @@ function BlogContainer({ thumbnail, title, date, tags, description }) {
           <p>{description}</p>
         </div>
         <div className={classes.root}>
-          <Button className={classes.button}>Read More...</Button>
+          <Link to={`/blog/${slug}`}>
+            <Button className={classes.button}>Read More...</Button>
+          </Link>
         </div>
       </div>
     </div>

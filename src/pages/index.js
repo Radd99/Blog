@@ -52,6 +52,7 @@ const IndexPage = () => {
             thumbnail={edge.node.thumbnail.file.url}
             tags={edge.node.tags}
             description={edge.node.description.content[0].content[0].value}
+            slug={edge.node.slug}
             key={edge.node.title}
           />
         )
