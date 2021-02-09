@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     padding: "0 3rem",
     color: "black",
-    marginBottom: "3rem",
+    marginBottom: "2rem",
   },
   logo: {
     fontSize: "2.5rem",
@@ -48,7 +48,7 @@ const Header = ({ siteTitle }) => {
 
   return (
     <Grid container justify="center" className={classes.navbar}>
-      <Grid item xs={3} md={2}>
+      <Grid item sm={3} md={2}>
         <h2 className={classes.logo}>
           <Link className={classes.gatsbyLogoLink} to="/">
             {siteTitle}
@@ -58,7 +58,7 @@ const Header = ({ siteTitle }) => {
       <Grid
         item
         container
-        xs={9}
+        sm={9}
         md={7}
         justify="center"
         className={classes.navs}
@@ -91,7 +91,7 @@ const Header = ({ siteTitle }) => {
           </Link>
         </p>
       </Grid>
-      <Grid item container justify="center" xs={false} md={3}>
+      <Grid item container justify="center" sm={false} md={3}>
         <p className={classes.links}>
           <Link
             className={classes.gatsbyLink}

@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 const register = () => {
   return (
     <Layout>
-      <SEO title="About" />
+      <SEO title="Sign up" />
       <h1>Register Page</h1>
     </Layout>
   )

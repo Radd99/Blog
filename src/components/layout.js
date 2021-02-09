@@ -34,7 +34,6 @@ const Layout = ({ children }) => {
             left: 0,
             width: "100%",
             textAlign: "center",
-            backgroundColor: "white",
             color: "black",
           }}
         >

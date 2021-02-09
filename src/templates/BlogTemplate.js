@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { makeStyles } from "@material-ui/core/styles"
 import { slugify } from "../utils/slugify"
+import SEO from "../components/seo"
 
 export const query = graphql`
   query($slug: String!) {
@@ -83,6 +84,7 @@ const BlogTemplate = props => {
 
   return (
     <Layout>
+      <SEO title={`${props.data.contentfulBlogWithDescription.title}`} />
       <div className={classes.container}>
         <h1 className={classes.title}>
           {props.data.contentfulBlogWithDescription.title}

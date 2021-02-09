@@ -90,10 +90,12 @@ function BlogContainer({ thumbnail, title, date, tags, description, slug }) {
         <div className={classes.tags}>
           {tagArray.map((tag, idx) => {
             return (
-              <Link to={`/tags/${slugify(tag)}`}>
-                <p key={idx} className={classes.tag}>
-                  {tag}
-                </p>
+              <Link
+                key={idx}
+                to={`/tags/${slugify(tag)}`}
+                style={{ textDecoration: "none" }}
+              >
+                <p className={classes.tag}>{tag}</p>
               </Link>
             )
           })}
@@ -103,7 +105,7 @@ function BlogContainer({ thumbnail, title, date, tags, description, slug }) {
           <p>{description}</p>
         </div>
         <div className={classes.root}>
-          <Link to={`/blog/${slug}`}>
+          <Link to={`/blog/${slug}`} style={{ textDecoration: "none" }}>
             <Button className={classes.button}>Read More...</Button>
           </Link>
         </div>
