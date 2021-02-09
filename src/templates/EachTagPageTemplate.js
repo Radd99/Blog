@@ -1,4 +1,4 @@
-import { useStaticQuery } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -62,22 +62,30 @@ const EachTagPageTemplate = ({ pageContext }) => {
     <Layout>
       <SEO title={`${tag}`} />
       <h1 className={classes.title}>{tag}</h1>
-      <p className={classes.subtitle}>
-        These are all the posts with "{tag}" tag
-      </p>
-      {displayArray.map(edge => {
-        return (
-          <BlogContainer
-            title={edge.node.title}
-            date={edge.node.createdAt}
-            thumbnail={edge.node.thumbnail.file.url}
-            tags={edge.node.tags}
-            description={edge.node.description.content[0].content[0].value}
-            slug={edge.node.slug}
-            key={edge.node.title}
-          />
-        )
-      })}
+      {displayArray.length === 1 && (
+        <p className={classes.subtitle}>
+          There is {displayArray.length} post which matches with the "{tag}" tag
+        </p>
+      )}
+      {displayArray.length > 1 && (
+        <p className={classes.subtitle}>
+          There are {displayArray.length} posts which match with the "{tag}" tag
+        </p>
+      )}
+      {displayArray.length > 0 &&
+        displayArray.map(edge => {
+          return (
+            <BlogContainer
+              title={edge.node.title}
+              date={edge.node.createdAt}
+              thumbnail={edge.node.thumbnail.file.url}
+              tags={edge.node.tags}
+              description={edge.node.description.content[0].content[0].value}
+              slug={edge.node.slug}
+              key={edge.node.title}
+            />
+          )
+        })}
     </Layout>
   )
 }
