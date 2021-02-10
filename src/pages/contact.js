@@ -18,11 +18,13 @@ const useStyle = makeStyles(theme => ({
     fontSize: "2rem",
     marginTop: "2rem",
     marginBottom: 0,
+    textAlign: "center",
   },
   subtitle: {
     fontSize: "1.1rem",
     color: "#777",
     marginTop: "0.2rem",
+    textAlign: "center",
   },
   root: {
     "& > *": {
@@ -35,6 +37,10 @@ const useStyle = makeStyles(theme => ({
     margin: "auto",
     marginTop: "2rem",
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      width: "100vw",
+      margin: "auto",
+    },
   },
   field: {
     width: "80%",

@@ -23,15 +23,12 @@ const Layout = ({ children }) => {
       <div
         style={{
           margin: `0 auto`,
-          padding: `0 5rem 1.5rem`,
+          padding: `0 0rem 1rem`,
         }}
       >
         <main>{children}</main>
         <footer
           style={{
-            position: "relative",
-            bottom: 0,
-            left: 0,
             width: "100%",
             textAlign: "center",
             color: "black",

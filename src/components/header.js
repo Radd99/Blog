@@ -9,21 +9,25 @@ const useStyles = makeStyles(theme => ({
   navbar: {
     display: "flex",
     alignItems: "center",
-    padding: "0 3rem",
+    padding: "0 1rem",
     color: "black",
-    marginBottom: "2rem",
+    marginTop: "1rem",
+    marginBottom: "1rem",
   },
   logo: {
     fontSize: "2.5rem",
     fontFamily: "roboto",
+    marginTop: "0.3rem",
+    marginBottom: "0.5rem",
+    textAlign: "center",
   },
   links: {
     fontSize: "1.5rem",
     fontFamily: "roboto",
     display: "inline",
-    marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3),
-    textDecoration: "none",
+    marginRight: theme.spacing(4),
+    marginLeft: theme.spacing(4),
+    marginTop: "0.5rem",
   },
   gatsbyLink: {
     color: "black",
@@ -48,18 +52,19 @@ const Header = ({ siteTitle }) => {
 
   return (
     <Grid container justify="center" className={classes.navbar}>
-      <Grid item sm={3} md={2}>
+      <Grid item sm={12} md={3}>
         <h2 className={classes.logo}>
           <Link className={classes.gatsbyLogoLink} to="/">
             {siteTitle}
           </Link>
         </h2>
       </Grid>
+
       <Grid
         item
         container
-        sm={9}
-        md={7}
+        sm={12}
+        md={9}
         justify="center"
         className={classes.navs}
       >
@@ -88,26 +93,6 @@ const Header = ({ siteTitle }) => {
             to="/tags"
           >
             Tags
-          </Link>
-        </p>
-      </Grid>
-      <Grid item container justify="center" sm={false} md={3}>
-        <p className={classes.links}>
-          <Link
-            className={classes.gatsbyLink}
-            activeClassName={classes.gatsbyLinkActive}
-            to="/login"
-          >
-            Sign In
-          </Link>
-        </p>
-        <p className={classes.links}>
-          <Link
-            className={classes.gatsbyLink}
-            activeClassName={classes.gatsbyLinkActive}
-            to="/register"
-          >
-            Sign Up
           </Link>
         </p>
       </Grid>

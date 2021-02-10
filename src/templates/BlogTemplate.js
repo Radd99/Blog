@@ -40,16 +40,20 @@ const useStyles = makeStyles(theme => ({
     fontSize: "2rem",
     marginTop: "2rem",
     marginBottom: 0,
+    textAlign: "center",
   },
   date: {
     fontSize: "1rem",
     marginTop: "0.5rem",
     marginBottom: "1rem",
     color: "#555",
+    textAlign: "center",
   },
   tags: {
-    display: "flex",
     width: "80%",
+    display: "flex",
+    justifyContent: "center",
+    margin: "auto",
   },
   tag: {
     color: "#2196F3",
@@ -66,17 +70,20 @@ const useStyles = makeStyles(theme => ({
     },
   },
   description: {
-    color: "#555",
+    color: "#777",
     width: "80%",
     marginTop: "2rem",
     margin: "auto",
-    fontSize: "1rem",
+    fontSize: "1.1rem",
   },
   body: {
     width: "90%",
     marginTop: "2rem",
     margin: "auto",
     fontSize: "1rem",
+  },
+  commentSection: {
+    margin: "1.5rem",
   },
 }))
 
@@ -130,7 +137,11 @@ const BlogTemplate = props => {
           )}
         </p>
       </div>
-      <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+      <DiscussionEmbed
+        className={classes.commentSection}
+        shortname={disqusShortname}
+        config={disqusConfig}
+      />
     </Layout>
   )
 }

@@ -11,24 +11,44 @@ const useStyles = makeStyles(theme => ({
     margin: "auto",
     display: "flex",
     padding: theme.spacing(2),
-    marginTop: "4rem",
+    marginTop: "2rem",
     marginBottom: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+      width: "100%",
+    },
   },
   imageSection: {
     height: "100%",
-    width: "100%",
+    width: "90%",
     display: "flex",
     verticalAlign: "middle",
     justifyContent: "center",
+    marginTop: "auto",
+    marginBottom: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      margin: "auto",
+    },
   },
   image: {
-    maxWidth: "90%",
+    width: "90%",
     maxHeight: "95%",
     margin: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+      margin: "auto",
+    },
   },
   textSection: {
     padding: theme.spacing(1, 2),
     width: "130%",
+    [theme.breakpoints.down("sm")]: {
+      width: "95%",
+      marginLeft: theme.spacing(1),
+      margin: "auto",
+      textAlign: "center",
+    },
   },
   title: {
     fontSize: "1.3rem",
@@ -42,6 +62,10 @@ const useStyles = makeStyles(theme => ({
   },
   tags: {
     display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      justifyContent: "space-evenly",
+    },
   },
   tag: {
     color: "#2196F3",
@@ -50,10 +74,15 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 0,
     marginRight: "2.5rem",
     fontWeight: "bold",
+    textAlign: "center",
     "&:hover": {
       color: theme.palette.primary.main,
       cursor: "pointer",
       textDecoration: "underline",
+    },
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
+      marginRight: 0,
     },
   },
   description: {
@@ -93,7 +122,7 @@ function BlogContainer({ thumbnail, title, date, tags, description, slug }) {
               <Link
                 key={idx}
                 to={`/tags/${slugify(tag)}`}
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", textAlign: "center" }}
               >
                 <p className={classes.tag}>{tag}</p>
               </Link>

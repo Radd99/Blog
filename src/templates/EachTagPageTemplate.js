@@ -8,13 +8,15 @@ import { makeStyles } from "@material-ui/core"
 const useStyles = makeStyles(theme => ({
   title: {
     fontSize: "2rem",
-    marginTop: "1rem",
+    marginTop: "2rem",
     marginBottom: 0,
+    textAlign: "center",
   },
   subtitle: {
     fontSize: "1.1rem",
     color: "#777",
     marginTop: "0.2rem",
+    textAlign: "center",
   },
 }))
 
@@ -61,7 +63,7 @@ const EachTagPageTemplate = ({ pageContext }) => {
   return (
     <Layout>
       <SEO title={`${tag}`} />
-      <h1 className={classes.title}>{tag}</h1>
+      <h1 className={classes.title}>{tag} </h1>
       {displayArray.length === 1 && (
         <p className={classes.subtitle}>
           There is {displayArray.length} post which matches with the "{tag}" tag
