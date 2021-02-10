@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 import { Button, Grid } from "@material-ui/core"
 import emailjs from "emailjs-com"
 import { init } from "emailjs-com"
-init("user_lqWTKwvny58Melxje67av")
+init(process.env.MAILJS_USER_ID)
 
 const useStyle = makeStyles(theme => ({
   title: {
