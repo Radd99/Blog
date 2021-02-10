@@ -1,10 +1,15 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import TextField from "@material-ui/core/TextField"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Button, Grid } from "@material-ui/core"
 import emailjs from "emailjs-com"
+import Snackbar from "@material-ui/core/Snackbar"
+import MuiAlert from "@material-ui/lab/Alert"
+
+import { validateContactForm } from "../utils/validateContactForm"
+
 import { init } from "emailjs-com"
 init(process.env.MAILJS_USER_ID)
 
@@ -18,7 +23,6 @@ const useStyle = makeStyles(theme => ({
     fontSize: "1.1rem",
     color: "#777",
     marginTop: "0.2rem",
-    marginBottom: "1rem",
   },
   root: {
     "& > *": {
@@ -43,6 +47,14 @@ const useStyle = makeStyles(theme => ({
     marginTop: "2rem",
     marginBottom: "3rem",
   },
+  snackBarRoot: {
+    width: "25%",
+    margin: "auto",
+    marginBottom: "1rem",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
 }))
 
 const Contact = () => {
@@ -55,32 +67,85 @@ const Contact = () => {
     message: "",
   })
 
+  const [errorMessages, setErrorMessages] = useState({})
+  const [yourNameError, setYourNameError] = useState(false)
+  const [emailError, setEmailError] = useState(false)
+  const [subjectError, setSubjectError] = useState(false)
+  const [messageError, setMessageError] = useState(false)
+
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (errorMessages.yourName !== undefined) {
+      setYourNameError(true)
+    } else {
+      setYourNameError(false)
+    }
+    if (errorMessages.email !== undefined) {
+      setEmailError(true)
+    } else {
+      setEmailError(false)
+    }
+    if (errorMessages.subject !== undefined) {
+      setSubjectError(true)
+    } else {
+      setSubjectError(false)
+    }
+    if (errorMessages.message !== undefined) {
+      setMessageError(true)
+    } else {
+      setMessageError(false)
+    }
+  }, [errorMessages])
+
   const onSubmit = e => {
     e.preventDefault()
-    console.log(
-      formValues,
-      process.env.MAILJS_SERVICE_ID,
-      process.env.MAILJS_TEMPLATE_ID
-    )
 
-    emailjs.send(
-      process.env.MAILJS_SERVICE_ID,
-      process.env.MAILJS_TEMPLATE_ID,
-      {
-        from_name: formValues.yourName,
-        message: formValues.message,
-        subject: formValues.subject,
-        email: formValues.email,
-      },
-      process.env.MAILJS_USER_ID
-    )
+    const { errors, valid } = validateContactForm(formValues)
+    console.log(valid)
 
-    setFormValues({
-      yourName: "",
-      email: "",
-      subject: "",
-      message: "",
-    })
+    if (!valid) {
+      setErrorMessages(errors)
+    } else {
+      setYourNameError(false)
+      setEmailError(false)
+      setSubjectError(false)
+      setMessageError(false)
+      setErrorMessages({})
+
+      emailjs.send(
+        process.env.MAILJS_SERVICE_ID,
+        process.env.MAILJS_TEMPLATE_ID,
+        {
+          from_name: formValues.yourName,
+          message: formValues.message,
+          subject: formValues.subject,
+          email: formValues.email,
+        },
+        process.env.MAILJS_USER_ID
+      )
+
+      setOpen(true)
+
+      setFormValues({
+        yourName: "",
+        email: "",
+        subject: "",
+        message: "",
+      })
+    }
+  }
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return
+    }
+
+    setOpen(false)
   }
 
   const handleChange = e => {
@@ -109,6 +174,9 @@ const Contact = () => {
                   name="yourName"
                   autoComplete="off"
                   value={formValues.yourName}
+                  required
+                  error={yourNameError}
+                  helperText={errorMessages.yourName}
                   onChange={handleChange}
                 />
               </Grid>
@@ -123,6 +191,9 @@ const Contact = () => {
                   autoComplete="off"
                   value={formValues.email}
                   onChange={handleChange}
+                  error={emailError}
+                  helperText={errorMessages.email}
+                  required
                 />
               </Grid>
 
@@ -136,6 +207,9 @@ const Contact = () => {
                   autoComplete="off"
                   value={formValues.subject}
                   onChange={handleChange}
+                  error={subjectError}
+                  helperText={errorMessages.subject}
+                  required
                 />
               </Grid>
 
@@ -146,9 +220,14 @@ const Contact = () => {
                   id="message"
                   label="Message"
                   name="message"
+                  multiline
+                  rows={3}
                   autoComplete="off"
+                  error={messageError}
+                  helperText={errorMessages.message}
                   value={formValues.message}
                   onChange={handleChange}
+                  required
                 />
               </Grid>
 
@@ -167,6 +246,14 @@ const Contact = () => {
             <Grid item xs={2} sm={3} />
           </Grid>
         </form>
+      </div>
+
+      <div className={classes.snackBarRoot}>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success">
+            The message has been sucessfully sent
+          </Alert>
+        </Snackbar>
       </div>
     </Layout>
   )
