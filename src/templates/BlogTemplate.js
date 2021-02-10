@@ -5,12 +5,15 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { makeStyles } from "@material-ui/core/styles"
 import { slugify } from "../utils/slugify"
 import SEO from "../components/seo"
+import { DiscussionEmbed } from "disqus-react"
 
 export const query = graphql`
   query($slug: String!) {
     contentfulBlogWithDescription(slug: { eq: $slug }) {
+      id
       title
       tags
+      slug
       description {
         content {
           content {
@@ -82,6 +85,15 @@ const BlogTemplate = props => {
 
   const classes = useStyles()
 
+  // change baseURL to working URL after deploying
+  const baseURL = "https://codeblog-sriramgoparaju-blog/blog/"
+  const disqusShortname = "codeblog-sriramgoparaju-blog"
+  const disqusConfig = {
+    identifier: props.data.contentfulBlogWithDescription.id,
+    title: props.data.contentfulBlogWithDescription.title,
+    url: baseURL + props.data.contentfulBlogWithDescription.slug,
+  }
+
   return (
     <Layout>
       <SEO title={`${props.data.contentfulBlogWithDescription.title}`} />
@@ -118,6 +130,7 @@ const BlogTemplate = props => {
           )}
         </p>
       </div>
+      <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
     </Layout>
   )
 }
