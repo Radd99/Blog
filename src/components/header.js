@@ -47,6 +47,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+// This is the Navbar
 const Header = ({ siteTitle }) => {
   const classes = useStyles()
 

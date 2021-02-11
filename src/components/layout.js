@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
             color: "black",
           }}
         >
-          Code Blog © {new Date().getFullYear()}, Build by Radd
+          Code Blog © {new Date().getFullYear()}, Built by Sriram Goparaju
         </footer>
       </div>
     </>
