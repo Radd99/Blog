@@ -6,6 +6,8 @@ import { makeStyles } from "@material-ui/core/styles"
 import { slugify } from "../utils/slugify"
 import SEO from "../components/seo"
 import { DiscussionEmbed } from "disqus-react"
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import "../fonts/CourierPrime-Regular.ttf"
 
 export const query = graphql`
   query($slug: String!) {
@@ -85,6 +87,21 @@ const useStyles = makeStyles(theme => ({
   commentSection: {
     margin: "1.5rem",
   },
+  image: {
+    width: "60%",
+    marginLeft: "50%",
+    transform: "translate(-50%)",
+    marginTop: "2rem",
+    marginBottom: "2rem",
+  },
+  code: {
+    fontSize: "1.2rem",
+    fontWeight: "bold",
+    backgroundColor: "#c4c4c4",
+    fontFamily: "courier",
+    lineHeight: "2rem",
+    padding: "0.3rem 1.5rem",
+  },
 }))
 
 const BlogTemplate = props => {
@@ -101,6 +118,26 @@ const BlogTemplate = props => {
     url: baseURL + props.data.contentfulBlogWithDescription.slug,
   }
 
+  const options = {
+    renderNode: {
+      [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
+      [BLOCKS.HEADING_3]: (node, children) => <h3>{children}</h3>,
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <p className={classes.body}>{children}</p>
+      ),
+      [BLOCKS.EMBEDDED_ASSET]: (node, children) => (
+        <img
+          className={classes.image}
+          src={node.data.target.fields.file["en-US"].url}
+          alt="Support"
+        ></img>
+      ),
+    },
+    renderMark: {
+      [MARKS.CODE]: text => <div className={classes.code}>{text}</div>,
+    },
+  }
+
   return (
     <Layout>
       <SEO title={`${props.data.contentfulBlogWithDescription.title}`} />
@@ -115,12 +152,11 @@ const BlogTemplate = props => {
           {tagArray.map((tag, idx) => {
             return (
               <Link
+                key={idx}
                 style={{ textDecoration: "none" }}
                 to={`/tags/${slugify(tag)}`}
               >
-                <p key={idx} className={classes.tag}>
-                  {tag}
-                </p>
+                <p className={classes.tag}>{tag}</p>
               </Link>
             )
           })}
@@ -131,11 +167,10 @@ const BlogTemplate = props => {
               .content[0].value
           }
         </p>
-        <p className={classes.body}>
-          {documentToReactComponents(
-            props.data.contentfulBlogWithDescription.body.json
-          )}
-        </p>
+        {documentToReactComponents(
+          props.data.contentfulBlogWithDescription.body.json,
+          options
+        )}
       </div>
       <DiscussionEmbed
         className={classes.commentSection}

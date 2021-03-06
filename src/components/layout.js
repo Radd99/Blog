@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <div style={{ overflow: "hidden" }}>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <CssBaseline />
       <div
@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
           Code Blog © {new Date().getFullYear()}, Built by Sriram Goparaju
         </footer>
       </div>
-    </>
+    </div>
   )
 }
 
