@@ -1,3 +1,9 @@
+# Code Blog
+
+This is a blog website I built using Gatsby JS. You can reach the blog here : https://relaxed-mahavira-099e8a.netlify.app
+
+I am just leaving the Gatsby info here
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.com">
