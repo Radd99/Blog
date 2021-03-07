@@ -124,7 +124,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const BlogTemplate = props => {
-  const tagArray = props.data.contentfulBlogWithDescription.tags.split(", ")
+  const tagArray = props.data.contentfulBlogWithDescription.tags.split(" ")
 
   const classes = useStyles()
 
