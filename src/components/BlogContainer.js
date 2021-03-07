@@ -105,7 +105,7 @@ const useStyles = makeStyles(theme => ({
 function BlogContainer({ thumbnail, title, date, tags, description, slug }) {
   const classes = useStyles()
 
-  const tagArray = tags.split(" ")
+  const tagArray = tags.split(", ")
 
   return (
     <div className={classes.container}>

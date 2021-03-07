@@ -45,21 +45,21 @@ const about = () => {
             reasons.
           </p>
           <p>
-            I wanted to challenge myself to build and maintain a blog which will
-            help me improve my development skills and get better. As I mentioned
-            earlier I am a self taught programmer and for a developer like me,
-            projects like these help a lot in the learning process. This is the
-            first reason.
+            First, I wanted to challenge myself to build and maintain a blog
+            which will help me improve my development skills and get better. As
+            I mentioned earlier I am a self taught programmer and for a
+            developer like me, projects like these teach me a lot.
           </p>
           <p>
-            Secondly, I am a beginner level competitive programmer and love to
-            learn new and interesting algorithms. I have tried to find a blog on
-            the internet which can help beginners in learning basic algorithms
-            and problem solving techniques which play an integral role for the
-            success of any competitive programmer. Hence, I am trying to help
-            other programmers learn basic algorithms and start on their journey
-            of competitive programming. I will try to post explanations for most
-            of the algorithms that I come across.
+            I am a competitive programmer and love to learn new and interesting
+            algorithms. I have tried to find a blog on the internet which can
+            help beginners in learning basic algorithms and problem solving
+            techniques which play an integral role for the success of any
+            competitive programmer. I could not find any which are specifically
+            catered to beginners. Hence, I am trying to help other programmers
+            learn basic algorithms and start on their journey of competitive
+            programming. I will try to post explanations for most of the
+            algorithms that I come across.
           </p>
         </div>
       </div>

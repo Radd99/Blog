@@ -80,9 +80,10 @@ const useStyles = makeStyles(theme => ({
   },
   body: {
     width: "90%",
-    marginTop: "2rem",
+    marginTop: "1rem",
+    marginBottom: "0.7rem",
     margin: "auto",
-    fontSize: "1rem",
+    fontSize: "1.1rem",
   },
   commentSection: {
     margin: "1.5rem",
@@ -91,8 +92,12 @@ const useStyles = makeStyles(theme => ({
     width: "60%",
     marginLeft: "50%",
     transform: "translate(-50%)",
-    marginTop: "2rem",
+    marginTop: "1rem",
     marginBottom: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      width: "95%",
+      marginBottom: "0.5rem",
+    },
   },
   code: {
     fontSize: "1.2rem",
@@ -102,10 +107,24 @@ const useStyles = makeStyles(theme => ({
     lineHeight: "2rem",
     padding: "0.3rem 1.5rem",
   },
+  subheading: {
+    marginTop: "3rem",
+    marginBottom: "1rem",
+    width: "90%",
+    margin: "auto",
+  },
+  subsubheading: {
+    fontSize: "1.1rem",
+    width: "90%",
+    fontWeight: "bold",
+    marginTop: "1.5rem",
+    marginBottom: "1rem",
+    margin: "auto",
+  },
 }))
 
 const BlogTemplate = props => {
-  const tagArray = props.data.contentfulBlogWithDescription.tags.split(" ")
+  const tagArray = props.data.contentfulBlogWithDescription.tags.split(", ")
 
   const classes = useStyles()
 
@@ -121,7 +140,12 @@ const BlogTemplate = props => {
   const options = {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
-      [BLOCKS.HEADING_3]: (node, children) => <h3>{children}</h3>,
+      [BLOCKS.HEADING_3]: (node, children) => (
+        <h2 className={classes.subheading}>{children}</h2>
+      ),
+      [BLOCKS.HEADING_5]: (node, children) => (
+        <h3 className={classes.subsubheading}>{children}</h3>
+      ),
       [BLOCKS.PARAGRAPH]: (node, children) => (
         <p className={classes.body}>{children}</p>
       ),
