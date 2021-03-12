@@ -118,12 +118,6 @@ const Contact = () => {
       setMessageError(false)
       setErrorMessages({})
 
-      console.log(
-        process.env.GATSBY_MAILJS_SERVICE_ID,
-        process.env.GATSBY_MAILJS_TEMPLATE_ID,
-        process.env.GATSBY_MAILJS_USER_ID
-      )
-
       emailjs.send(
         process.env.GATSBY_MAILJS_SERVICE_ID,
         process.env.GATSBY_MAILJS_TEMPLATE_ID,
