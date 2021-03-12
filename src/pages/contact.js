@@ -108,7 +108,6 @@ const Contact = () => {
     e.preventDefault()
 
     const { errors, valid } = validateContactForm(formValues)
-    console.log(valid)
 
     if (!valid) {
       setErrorMessages(errors)
@@ -120,15 +119,15 @@ const Contact = () => {
       setErrorMessages({})
 
       emailjs.send(
-        process.env.MAILJS_SERVICE_ID,
-        process.env.MAILJS_TEMPLATE_ID,
+        process.env.GATSBY_MAILJS_SERVICE_ID,
+        process.env.GATSBY_MAILJS_TEMPLATE_ID,
         {
           from_name: formValues.yourName,
           message: formValues.message,
           subject: formValues.subject,
           email: formValues.email,
         },
-        process.env.MAILJS_USER_ID
+        process.env.GATSBY_MAILJS_USER_ID
       )
 
       setOpen(true)
